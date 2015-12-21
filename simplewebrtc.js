@@ -65,17 +65,17 @@ function SimpleWebRTC(opts) {
     WildEmitter.call(this);
 
     // create default SocketIoConnection if it's not passed in
-    if (this.config.connection === null) {
-        connection = this.connection = new SocketIoConnection(this.config);
-    } else {
-        connection = this.connection = this.config.connection;
-    }
+ //   if (this.config.connection === null) {
+    connection = this.connection = new SocketIoConnection(this.config);
+ //   } else {
+ //       connection = this.connection = this.config.connection;
+ //   }
 
-    connection.on('connect', function () {
-        self.emit('connectionReady', connection.getSessionid());
-        self.sessionReady = true;
-        self.testReadiness();
-    });
+//    connection.on('connect', function () {
+    self.emit('connectionReady', connection.getSessionid());
+    self.sessionReady = true;
+//        self.testReadiness();
+//    });
 
     connection.on('message', function (message) {
         var peers = self.webrtc.getPeers(message.from, message.roomType);

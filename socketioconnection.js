@@ -1,7 +1,11 @@
 // var io = require('socket.io-client');
 
 function SocketIoConnection(config) {
-    this.connection = io.connect(config.url, config.socketio);
+    if(config.connection){
+        this.connection=config.connection;
+    }else{
+        this.connection = io.connect(config.url, config.socketio);
+    }
 }
 
 SocketIoConnection.prototype.on = function (ev, fn) {
